@@ -20,6 +20,9 @@
     ],
     "modmenu": [
       "eu.midnightdust.lib.config.MidnightConfig$ModMenuInst"
+    ],
+    "client": [
+      "com.mervyn.effectsrebalancer.EffectsRebalancerClient"
     ]
   },
   "mixins": [

@@ -25,6 +25,7 @@ Thumbs.db
 
 # Log files
 *.log
+*.txt
 
 # Personal/Config files
 gradle.local.properties

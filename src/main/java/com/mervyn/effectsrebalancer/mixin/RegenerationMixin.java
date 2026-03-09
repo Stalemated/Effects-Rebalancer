@@ -1,6 +1,6 @@
 package com.mervyn.effectsrebalancer.mixin;
 
-import com.mervyn.effectsrebalancer.config.EffectsConfig;
+import com.mervyn.effectsrebalancer.config.SyncedConfig;
 import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,6 +15,6 @@ public class RegenerationMixin {
     @Redirect(method = "applyUpdateEffect(Lnet/minecraft/entity/LivingEntity;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;heal(F)V"))
     public void modifyRegenAmount(LivingEntity instance, float amount) {
         // Use our configured amount instead of the hardcoded 1.0F
-        instance.heal(EffectsConfig.regenerationAmount);
+        instance.heal(SyncedConfig.regenerationAmount);
     }
 }
