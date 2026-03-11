@@ -16,7 +16,7 @@ public class RegenerationMixin {
 
     @ModifyArg(method = "applyUpdateEffect(Lnet/minecraft/entity/LivingEntity;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;heal(F)V"), index = 0)
     public float modifyRegenAmount(float amount) {
-        if ("effect.minecraft.regeneration".equals(((StatusEffect) (Object) this).getTranslationKey()) && !SyncedConfig.enableMaxHealthRegen) {
+        if ((Object) this == StatusEffects.REGENERATION && !SyncedConfig.enableMaxHealthRegen) {
             return SyncedConfig.regenerationAmount;
         }
         return amount;

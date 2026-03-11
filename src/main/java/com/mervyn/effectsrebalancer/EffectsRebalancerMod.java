@@ -15,7 +15,7 @@ import net.minecraft.util.math.MathHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Set;
 import java.util.UUID;
 
@@ -25,9 +25,9 @@ public class EffectsRebalancerMod implements ModInitializer {
         public static final Identifier SYNC_CONFIG_PACKET_ID = new Identifier("effects-rebalancer", "sync_config");
         public static final Identifier UPDATE_CONFIG_PACKET_ID = new Identifier("effects-rebalancer", "update_config");
 
-        // Track players pending a sync to ensure we send it on the very next tick after
+        // Track players pending a sync to ensure sending it on the very next tick after
         // JOIN
-        private static final Set<UUID> pendingSyncPlayers = new HashSet<>();
+        private static final Set<UUID> pendingSyncPlayers = ConcurrentHashMap.newKeySet();
 
         @Override
         public void onInitialize() {
@@ -80,7 +80,7 @@ public class EffectsRebalancerMod implements ModInitializer {
                                                         EffectsConfig.regenerationMaxHealthPercentage = MathHelper
                                                                         .clamp(proposedRegenMaxHealthPercentage, 0.0f, 1.0f);
                                                         EffectsConfig.healingCooldownTicks = MathHelper
-                                                                        .clamp(proposedCooldown, 0, 1200);
+                                                                        .clamp(proposedCooldown, 1, 1200);
                                                         EffectsConfig.absorptionAmount = MathHelper
                                                                         .clamp(proposedAbsorption, 0, 100);
 
